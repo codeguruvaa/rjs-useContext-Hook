@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { CounterContext } from './CounterContext';
+import FComponent from './FComponent';
 
 function App() {
+
+  var [counter, setCounter] = useState(0);
+
+  var increment =()=>{
+    setCounter(counter+1);
+  };
+
+  var decrement = () =>{
+    setCounter (counter - 1);
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>App file</h1>
+      <h2>{counter}</h2>
+      <button onClick={increment}>increment</button>
+      <button onClick={decrement}>Decrement</button>
+
+      <br />
+      <br />
+
+      <CounterContext.Provider>
+        <FComponent counter={counter} />
+      </CounterContext.Provider>
+
     </div>
   );
 }
